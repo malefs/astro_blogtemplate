@@ -1,0 +1,30 @@
+@font-face {
+  font-family: Manrope;
+  src: url(../assets/fonts/Manrope-Light.woff2);
+  src: url(../assets/fonts/Manrope-SemiBold.woff2);
+  src: url(../assets/fonts/Manrope-Regular.woff2);
+  src: url(../assets/fonts/Manrope-Medium.woff2);
+}
+
+.moon-logo {
+  transform: translateY(0%) rotateZ(0deg);
+}
+
+.sun-logo {
+  transform: translateY(0) rotateZ(0deg);
+}
+
+.animate-sun {
+  transform: translateY(20%) rotateZ(100deg);
+}
+
+.animate-moon {
+  transform: translateY(20%) rotateZ(50deg);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

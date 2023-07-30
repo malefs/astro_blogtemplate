@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ListPosts from '../../components/ListPosts.astro'
+import ListCategories from '../../components/ListCategories.astro'
+import Shape from '../../components/icons/Shape.astro'
+const { category } = Astro.params
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+
+  return posts.map((post) => ({
+    params: { category: post.data.category.toLowerCase() },
+    props: post,
+  }))
+}
+
+const posts = (await getCollection('blog'))
+  .filter(
+    (post) => post.data.category.toLowerCase() === category!.toLowerCase()
+  )
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+---
+
+<BaseLayout title={category}>
+  <div class='flex justify-start items-center gap-2'>
+    <Shape />
+    <h1 class='text-5xl font-semibold tracking-wide first-letter:uppercase'>
+      {category}
+    </h1>
+  </div>
+
+  <ListCategories activeCategory={category} />
+  <ListPosts posts={posts} />
+</BaseLayout>
